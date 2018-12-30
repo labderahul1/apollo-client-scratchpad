@@ -1,40 +1,30 @@
 import gql from "graphql-tag";
+import { employeeFragment } from './fragments';
 
 export const ALL_EMPLOYEES = gql`
 	query allEmp {
 		getAllEmployees {
-			id
-			firstName
-			lastName
-			designation
-			salary
-			address {
-				city
-				state
-				country
+			...employeeFields
+			... on Engineer {
+				projects {
+					name
+				}
 			}
-			department {
-				name
+			... on HumanResource {
+				friends
+			}
+			... on MarketingExec {
+				bonus
 			}
 		}
 	}
+	${employeeFragment}
 `;
 export const EMPLOYEE_WITH_ID = gql`
 	query employeeWithId($id: String) {
 		getEmployeeById(id: $id) {
-			id
-			firstName
-			lastName
-			designation
-			salary
-			address {
-				city
-				state
-				country
-			}
-			department {
-				name
-			}
+			...employeeFields
 		}
 	}
+	${employeeFragment}
 `;

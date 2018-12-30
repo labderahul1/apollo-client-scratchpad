@@ -14,7 +14,22 @@ class Employee extends Component {
 				<p><b>Designation: </b>{info.designation} </p>
 				<p><b>Salary: </b>{info.salary} </p>
 				<p><b>Department: </b>{info.department.name} </p>
-				<p><b>Address: </b>{info.address.city}, {info.address.state}, {info.address.country},  </p>
+				<p><b>Address: </b>{info.address.city}, {info.address.state}, {info.address.country}  </p>
+				{
+					info.projects && (
+						<p><b>Projects: </b> {info.projects.map(p => p.name).join(', ')} </p>
+					)
+				}
+				{
+					info.friends && (
+						<p><b>Friends: </b> {info.friends.join(', ')} </p>
+					)
+				}
+				{
+					info.bonus && (
+						<p><b>Bonus: </b> {info.bonus} </p>
+					)
+				}
 				<Link to={`/${info.id}`}>
 					<button type="button">Edit</button>
 				</Link>
