@@ -20,7 +20,7 @@ export default class EditTodo extends Component {
 					({ loading, error, data: { getToDoById } }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error : (</p>;
-						// console.log(getToDoById, 'getToDoById');
+						console.log(getToDoById, 'getToDoById');
 						return (
 							<div>
 								<EditTodoForm getToDoById={getToDoById} />

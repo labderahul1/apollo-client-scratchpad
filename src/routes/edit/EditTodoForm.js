@@ -10,26 +10,17 @@ export default class EditTodoForm extends Component {
 	constructor(props) {
 		super(props);
 		this.state= {
-			todoData: {
-				id: '66aec3bc-599a-4acc-9278-aa721ee2d10f',
-				label: 'Rahul Labde',
-				todoActivity: [
-					{
-						id: '12345',
-						label: 'dddd',
-						status: 'Done'
-					},
-					{
-						id: '123456',
-						label: 'kkkk',
-						status: 'Todo'
-					}
-				],
-				description: 'Task1 desc',
-				todoStatus: 'Todo'
-			}
-			// todoData: this.props.getToDoById
+			todoData: this.props.getToDoById
 		};
+
+		this.removeCacheData();
+	}
+
+	removeCacheData = () => {
+		let newState = Object.assign({}, this.state);
+		delete newState.todoData.__typename;
+		newState.todoData.todoActivity.forEach((ele) =>  delete ele.__typename );
+		this.setState(newState);
 	}
 
 	editTodoDataLabel = (e) => {
@@ -40,11 +31,12 @@ export default class EditTodoForm extends Component {
 		let newState = Object.assign({}, this.state);
 		const todoIndex = newState.todoData.todoActivity.findIndex((element) => element.id === itemId );
 		newState.todoData.todoActivity[todoIndex][_key] = e.target.value;
+		// newState.todoData.todoActivity.forEach((ele) =>  delete ele.__typename );
 		this.setState(newState);
 	}
 
 	// Note: `user` comes from the URL, courtesy of our router
-	render({ }, { todoData: { id, label, todoActivity }, todoData }) {
+	render({}, { todoData: { id, label, todoActivity }, todoData }) {
 		return (
 			<Mutation
 				mutation={UPDATE_TODO}
@@ -75,7 +67,6 @@ export default class EditTodoForm extends Component {
 									<button id="checkAll" className="btn btn-success"
 										// eslint-disable-next-line react/jsx-no-bind
 										onClick={e => {
-											// console.log({ id, updateInput: todoData });
 											updateTodo({ variables: { id, updateInput: todoData } });
 											route('/home');
 										}}
