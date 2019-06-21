@@ -26,7 +26,6 @@ export default class TodoInputField extends Component {
 	}
 
 	render({},  { todoInput }) {
-		console.log(todoInput.label.length);
 		return (
 			<Mutation
 				mutation={CREATE_TODO}
@@ -43,7 +42,7 @@ export default class TodoInputField extends Component {
 						<div class="container">
 							<div class="row">
 								<div class="col-md-9">
-									<input type="text" value={todoInput.label} onChange={this.setTodotext} class="form-control add-todo" placeholder="Add todo" />
+									<input type="text" value={todoInput.label} onInput={this.setTodotext} class="form-control add-todo" placeholder="Add todo..." />
 								</div>
 								<div class="col-md-3">
 									<button id="checkAll" class="btn btn-success"

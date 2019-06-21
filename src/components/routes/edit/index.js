@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { Query } from 'react-apollo';
-import { GET_TODO_BYID } from '../../constants/queries';
+import { GET_TODO_BYID } from '../../../constants/queries';
 import EditTodoForm from './EditTodoForm';
 
 export default class EditTodo extends Component {
@@ -20,7 +20,6 @@ export default class EditTodo extends Component {
 					({ loading, error, data: { getToDoById } }) => {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error : (</p>;
-						console.log(getToDoById, 'getToDoById');
 						return (
 							<div>
 								<EditTodoForm getToDoById={getToDoById} />

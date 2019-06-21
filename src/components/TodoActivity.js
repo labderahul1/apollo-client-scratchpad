@@ -8,7 +8,6 @@ export default class TodoActivity extends Component {
 	}
 
 	render({ label, color, status }, {}) {
-		// console.log('Hii', this.props);
 		return (
 			<div>
 				{

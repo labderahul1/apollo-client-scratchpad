@@ -40,33 +40,6 @@ export default class RadioGroup extends Component {
 							/>
 						</div>
 					</div>
-
-					{/* <div className="custom-control custom-radio custom-control-inline">
-						<input type="radio" className="custom-control-input" id={`done_${id}`}
-							value="Done"
-							name={`activity_${id}`}
-							checked={status === 'Done'}
-						/>
-						<label className="custom-control-label" for="defaultInline1">Done</label>
-					</div>
-
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" className="custom-control-input" id={`wip_${id}`}
-							value="WIP"
-							name={`activity_${id}`}
-							checked={status === 'WIP'}
-						/>
-						<label className="custom-control-label" for="defaultInline2">WIP</label>
-					</div>
-
-					<div class="custom-control custom-radio custom-control-inline">
-						<input type="radio" className="custom-control-input" id={`todo_${id}`}
-							value="Todo"
-							name={`activity_${id}`}
-							checked={status === 'Todo'}
-						/>
-						<label className="custom-control-label" for="defaultInline3">Todo</label>
-					</div> */}
 				</div>
 			</div>
 		);

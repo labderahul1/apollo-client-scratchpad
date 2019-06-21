@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { Query } from 'react-apollo';
-import { GET_TODO_BYID } from '../../constants/queries';
+import { GET_TODO_BYID } from '../../../constants/queries';
 import style from './style';
 
 export default class Profile extends Component {

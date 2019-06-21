@@ -1,9 +1,9 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
-import RadioGroup from '../../components/RadioGroup';
+import RadioGroup from '../../../components/RadioGroup';
 import style from './style';
 import { Mutation } from 'react-apollo';
-import { UPDATE_TODO } from '../../constants/mutuation';
+import { UPDATE_TODO } from '../../../constants/mutuation';
 
 export default class EditTodoForm extends Component {
 	// eslint-disable-next-line react/sort-comp
@@ -12,7 +12,6 @@ export default class EditTodoForm extends Component {
 		this.state= {
 			todoData: this.props.getToDoById
 		};
-
 		this.removeCacheData();
 	}
 
@@ -31,7 +30,6 @@ export default class EditTodoForm extends Component {
 		let newState = Object.assign({}, this.state);
 		const todoIndex = newState.todoData.todoActivity.findIndex((element) => element.id === itemId );
 		newState.todoData.todoActivity[todoIndex][_key] = e.target.value;
-		// newState.todoData.todoActivity.forEach((ele) =>  delete ele.__typename );
 		this.setState(newState);
 	}
 
