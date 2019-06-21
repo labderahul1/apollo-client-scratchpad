@@ -44,13 +44,13 @@ export default class AddTodoItems extends Component {
 									aria-label="Recipient's username" aria-describedby="basic-addon2"
 								/>
 								<div className="input-group-append">
-									<a class="plus" style={{ display: 'inline-block', pointerEvents: todoActivity.label.length ? '' : 'none' }}
+									<a class="plusIcon" style={{ pointerEvents: todoActivity.label.length ? '' : 'none' }}
 										data-dismiss="alert"
 										aria-label="close"
 										onClick={e => {
 											addTodoActivity({ variables: { id, todoActivity } });
 										}}
-									><FaPlus />
+									><FaPlus color={todoActivity.label.length ? 'blue' : 'grey'} />
 									</a>
 								</div>
 							</div>

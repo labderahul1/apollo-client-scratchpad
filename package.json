@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "per-env",
     "start:production": "npm run -s serve",
-    "start:development": "npm run -s dev",
+    "start": "npm run -s dev",
     "build": "preact build",
     "serve": "preact build && preact serve",
     "dev": "preact watch",

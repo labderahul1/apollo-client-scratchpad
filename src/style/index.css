@@ -78,3 +78,8 @@ a {
 	float: left;
 	margin-right: 10px;
 }
+
+.plusIcon {
+	display: 'inline-block';
+	margin-left: 10px;
+}
