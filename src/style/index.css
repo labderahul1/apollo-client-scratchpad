@@ -1,4 +1,5 @@
-@import '~bootstrap/dist/css/bootstrap.css';
+/* @import '~bootstrap/dist/css/bootstrap.css'; */
+@import '~https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css';
 
 html, body {
 	height: 100%;
@@ -21,26 +22,6 @@ html, body {
 	height: 100%;
 }
 
-.todoBlock {
-	position: relative;
-    float: left;
-    margin: 20px;
-	border: 1px solid #000;
-	padding: 10px;
-	width: 180px;
-    min-height: 150px;
-}
-
-.closeNotes {
-	position: absolute;
-	right: 3px;
-	top: 0px;
-}
-
-a {
-	cursor: pointer;
-}
-
 .todoInDetails {
 	position: absolute;
 	width: 90%;
@@ -50,28 +31,6 @@ a {
     margin-top: -25%; */
 }
 
-.editNotes {
-	position: absolute;
-	right: 5px;
-	top: 0px;
-}
-
-.addNotes {
-	/* position: absolute; */
-	bottom: 5px;
-	right: 5px;
-}
-
-.totoActivityStatus {
-	width: 10px;
-    height: 10px;
-    background: red;
-    position: absolute;
-    border: 1px solid transparent;
-	border-radius: 50%;
-	right: 10px;
-}
-
 .editInput {
 	width: 50%;
 	position: relative;
@@ -79,7 +38,120 @@ a {
 	margin-right: 10px;
 }
 
-.plusIcon {
-	display: 'inline-block';
-	margin-left: 10px;
-}
+/* ---------------AVADHUT CSSS-------------- */
+
+
+* {
+	font-family: helvetica;
+  }
+
+  input {
+	margin: 20px;
+	width: 68%;
+	height: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 18px;
+	border: none;
+	box-shadow: 0 1px 1px 1px #ccc;
+  }
+
+  button {
+	height: 40px;
+	width: 20%;
+	font-size: 18px;
+	background: #efb323;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+  }
+  
+  .container {
+	position: relative;
+	float: left;
+	margin: 20px;
+	max-height: 450px;
+	width: 450px;
+	box-shadow: 0 1px 1px 1px #ccc;
+	background: #fcf1d6;
+  }
+  
+  .content {
+	padding: 20px;
+	min-height: 300px;
+	max-height: 300px;
+	overflow-y: auto;
+  }
+  
+  .header {
+	width: 100%;
+	height: 60px;
+	background: #efb323;
+	border-bottom: 1px solid #bbb;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 18px;
+	box-sizing: border-box;
+  }
+  
+  .footer {
+	height: 80px;
+	border-top: 0.5px solid #aeaeaf;
+  }
+  
+  .header .action {
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+	float: right;
+  }
+  
+  .item {  
+	font-size: 18px;
+	margin-bottom: 30px;
+	cursor: default;
+  }
+  
+  .item .actions {
+	display: inline-block;
+	float: right;
+  }
+  
+  .item .actions i {
+	margin-left: 15px;
+	cursor: pointer;
+  }
+  
+  .done {
+	color: grey;
+	text-decoration: line-through;
+  }
+
+  .disabled {
+	  cursor: default;
+	  pointer-events: none;
+  }
+  
+  /* .footer input {
+	margin: 20px;
+	width: 68%;
+	height: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 18px;
+	border: none;
+	box-shadow: 0 1px 1px 1px #ccc;
+  }
+   */
+  /* .footer button {
+	height: 40px;
+	width: 20%;
+	font-size: 18px;
+	background: #5b9bd8;
+	border: none;
+	cursor: pointer;
+  } */
+
+  button:disabled {
+	  cursor: default;
+  }

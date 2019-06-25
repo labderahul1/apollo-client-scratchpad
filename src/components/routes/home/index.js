@@ -5,7 +5,6 @@ import TodoMiniList from '../../../components/TodoMiniList';
 
 const Home = () => (
 	<div class={style.home}>
-		<h3>ToDO List</h3>
 		<TodoInputField />
 		<div>
 			<TodoMiniList label="Todays Todo" />

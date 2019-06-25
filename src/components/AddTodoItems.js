@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
 import { h, Component } from 'preact';
-import { FaPlus } from 'react-icons/fa';
 import { Mutation } from 'react-apollo';
 import uuid from 'uuid';
 import { ADD_TODO_ACTIVITY } from '../constants/mutuation';
-// import { GET_ALL_TODO, GET_TODO_BYID } from '../constants/queries';
+import { GET_ALL_TODO } from '../constants/queries';
 
 export default class AddTodoItems extends Component {
 	state= {
@@ -21,39 +20,45 @@ export default class AddTodoItems extends Component {
 		this.setState({ todoActivity: { ...this.state.todoActivity, id: uuid(), label: e.target.value } });
 	}
 
+	clearActivity = (e) => {
+		this.setState({ todoActivity: { ...this.state.todoActivity, id: '', label: '' } });
+	}
+
 	render({ id }, { todoActivity }) {
 		return (
 			<Mutation
 				mutation={ADD_TODO_ACTIVITY}
-				// update={(cache, { data: { addTodoActivity } }) => {
-				// 	const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-				// 	console.log(getAllTodoList, 'getAllTodoList', addTodoActivity);
-				// console.log( cache.readQuery({ query: GET_TODO_BYID, variables: { id } }));
-				// 	cache.writeQuery({
-				//   query: GET_ALL_TODO,
-				//   data: { getAllTodoList: getAllTodoList.concat([addTodoActivity]) }
-				// 	});
-			//   }}
+				update={(cache, { data: { addTodoActivity } }) => {
+					const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
+					const todo = getAllTodoList.find((ele) => ele.id === id);
+					todo.todoActivity.push(addTodoActivity);
+					console.log('Mutation: ', getAllTodoList);
+					cache.writeQuery({
+						query: GET_ALL_TODO,
+						data: { getAllTodoList }
+					});
+			  }}
 			>
 				{
 					(addTodoActivity, { data }) => (
-						<div className=" addNotes">
-							<div className="input-group">
-								<input type="text" className="form-control form-control-sm" placeholder="Add Items..."
-									onInput={this.setActivity}
-									aria-label="Recipient's username" aria-describedby="basic-addon2"
-								/>
-								<div className="input-group-append">
-									<a class="plusIcon" style={{ pointerEvents: todoActivity.label.length ? '' : 'none' }}
-										data-dismiss="alert"
-										aria-label="close"
-										onClick={e => {
-											addTodoActivity({ variables: { id, todoActivity } });
-										}}
-									><FaPlus color={todoActivity.label.length ? 'blue' : 'grey'} />
-									</a>
-								</div>
-							</div>
+						<div className="footer">
+							<input type="text" placeholder="Add item..."
+								onInput={this.setActivity}
+								value={todoActivity.label}
+								onKeyPress={e => {
+									if (e.key === 'Enter') {
+										addTodoActivity({ variables: { id, todoActivity } });
+										this.clearActivity();
+									}
+								}}
+							/>
+							<button
+								onClick={e => {
+									addTodoActivity({ variables: { id, todoActivity } });
+									this.clearActivity();
+								}}
+								disabled={!todoActivity.label.length}
+							>Add</button>
 						</div>
 					)
 				}

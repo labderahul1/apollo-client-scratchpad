@@ -39,21 +39,23 @@ export default class TodoInputField extends Component {
 			>
 				{
 					(createTodo, { data }) => (
-						<div class="container">
-							<div class="row">
-								<div class="col-md-9">
-									<input type="text" value={todoInput.label} onInput={this.setTodotext} class="form-control add-todo" placeholder="Add todo..." />
-								</div>
-								<div class="col-md-3">
-									<button id="checkAll" class="btn btn-success"
-										onClick={e => {
-											createTodo({ variables: { todoInput } });
-											this.cleartext();
-										  }}
-										  disabled={!todoInput.label.length}
-									>Add</button>
-								</div>
-							</div>
+						<div>
+							<input type="text" value={todoInput.label} onInput={this.setTodotext} 
+								onKeyPress={e => {
+									if (e.key === 'Enter') {
+										createTodo({ variables: { todoInput } });
+										this.cleartext();
+									}
+								}}
+								class="form-control add-todo" placeholder="Add todo..."
+							/>
+							<button id="checkAll" class="btn btn-success"
+								onClick={e => {
+									createTodo({ variables: { todoInput } });
+									this.cleartext();
+								}}
+								disabled={!todoInput.label.length}
+							>Add</button>
 						</div>
 					)
 				}
