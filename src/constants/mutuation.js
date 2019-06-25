@@ -36,6 +36,15 @@ export const DELETE_TODO = gql`
 mutation deleteTodo($id: String) {
   deleteTodo(todoId: $id) {
     id
+    # label
+  }
+}
+`;
+
+export const DELETE_ITEM = gql`
+mutation deleteItem($todoId: String, $itemId: String) {
+  deleteItem(todoId: $todoId, itemId: $itemId) {
+    id
     label
   }
 }

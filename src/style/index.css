@@ -14,14 +14,6 @@ html, body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-* {
-	box-sizing: border-box;
-}
-
-#app {
-	height: 100%;
-}
-
 .todoInDetails {
 	position: absolute;
 	width: 90%;
@@ -43,6 +35,8 @@ html, body {
 
 * {
 	font-family: helvetica;
+	box-sizing: border-box;
+	/* color: #000000; */
   }
 
   input {
@@ -90,7 +84,7 @@ html, body {
 	border-bottom: 1px solid #bbb;
 	font-size: 20px;
 	font-weight: bold;
-	padding: 18px;
+	padding: 20px;
 	box-sizing: border-box;
   }
   
@@ -100,20 +94,24 @@ html, body {
   }
   
   .header .action {
-	display: inline-block;
+	/* display: inline-block; */
 	height: 20px;
 	width: 20px;
 	float: right;
   }
+
+  .header i {
+	  cursor: pointer;
+  }
   
   .item {  
 	font-size: 18px;
+	color: #000000;
 	margin-bottom: 30px;
 	cursor: default;
   }
   
   .item .actions {
-	display: inline-block;
 	float: right;
   }
   
@@ -123,7 +121,7 @@ html, body {
   }
   
   .done {
-	color: grey;
+	color: grey !important;
 	text-decoration: line-through;
   }
 
@@ -154,4 +152,8 @@ html, body {
 
   button:disabled {
 	  cursor: default;
+  }
+
+  .labelText {
+	  position: relative;
   }

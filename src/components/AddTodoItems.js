@@ -28,18 +28,50 @@ export default class AddTodoItems extends Component {
 		return (
 			<Mutation
 				mutation={ADD_TODO_ACTIVITY}
-				update={(cache, { data: { addTodoActivity } }) => {
-					const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-					const todo = getAllTodoList.find((ele) => ele.id === id);
-					todo.todoActivity.push(addTodoActivity);
-					console.log('Mutation: ', getAllTodoList);
-					cache.writeQuery({
-						query: GET_ALL_TODO,
-						data: { getAllTodoList }
-					});
-			  }}
 			>
-				{
+				{addTodoActivity => {
+					console.log();
+					return (
+						<div className="footer">
+							<input type="text" placeholder="Add item..."
+								onInput={this.setActivity}
+								value={todoActivity.label}
+								onKeyPress={e => {
+									if (e.key === 'Enter') {
+										addTodoActivity({ variables: { id, todoActivity } });
+										this.clearActivity();
+									}
+								}}
+							/>
+							<button
+								onClick={e => {
+									addTodoActivity({ variables: { id, todoActivity },
+										optimisticResponse: {
+											__typename: 'Mutation',
+											addTodoActivity: {
+												id,
+												...todoActivity,
+												__typename: 'Todo'
+											}
+										},
+										update: (cache, { data: { addTodoActivity } }) => {
+											const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
+											const todo = getAllTodoList.find((ele) => ele.id === id);
+											todo.todoActivity.push(addTodoActivity);
+											cache.writeQuery({
+												query: GET_ALL_TODO,
+												data: { getAllTodoList }
+											});
+									  }
+									});
+									this.clearActivity();
+								}}
+								disabled={!todoActivity.label.length}
+							>Add</button>
+						</div>
+					);
+				}}
+				{/* {
 					(addTodoActivity, { data }) => (
 						<div className="footer">
 							<input type="text" placeholder="Add item..."
@@ -61,7 +93,7 @@ export default class AddTodoItems extends Component {
 							>Add</button>
 						</div>
 					)
-				}
+				} */}
 			</Mutation>
 		);
 	}

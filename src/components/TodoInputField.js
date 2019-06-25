@@ -29,16 +29,10 @@ export default class TodoInputField extends Component {
 		return (
 			<Mutation
 				mutation={CREATE_TODO}
-				update={(cache, { data: { createTodo } }) => {
-					const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-					cache.writeQuery({
-						query: GET_ALL_TODO,
-						data: { getAllTodoList: getAllTodoList.concat([createTodo]) }
-					});
-			  }}
 			>
-				{
-					(createTodo, { data }) => (
+				{createTodo => {
+					console.log();
+					return (
 						<div>
 							<input type="text" value={todoInput.label} onInput={this.setTodotext} 
 								onKeyPress={e => {
@@ -51,14 +45,28 @@ export default class TodoInputField extends Component {
 							/>
 							<button id="checkAll" class="btn btn-success"
 								onClick={e => {
-									createTodo({ variables: { todoInput } });
+									createTodo({ variables: { todoInput },
+										optimisticResponse: {
+											__typename: 'Mutation',
+											createTodo: {
+												...todoInput,
+												__typename: 'Todo'
+											}
+										},
+										update: (cache, { data: { createTodo } }) => {
+											const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
+											cache.writeQuery({
+												query: GET_ALL_TODO,
+												data: { getAllTodoList: getAllTodoList.concat([createTodo]) }
+											});
+										}
+									});
 									this.cleartext();
 								}}
 								disabled={!todoInput.label.length}
 							>Add</button>
 						</div>
-					)
-				}
+					)}}
 			</Mutation>
 		);
 	}

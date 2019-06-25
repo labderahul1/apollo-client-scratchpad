@@ -4,10 +4,10 @@
 import { h, Component } from 'preact';
 import { Query } from 'react-apollo';
 import { route } from 'preact-router';
-import { FaEdit } from 'react-icons/fa';
 import { GET_ALL_TODO } from '../constants/queries';
 import TodoItem from './TodoItem';
 import AddTodoItems from './AddTodoItems';
+import TodoHeader from './TodoHeader';
 
 export default class TodoMiniList extends Component {
 	state= {
@@ -25,6 +25,10 @@ export default class TodoMiniList extends Component {
 
 	editTodo = (id) => {
 		route(`/edit/${id}`, id);
+	};
+
+	deleteTodo = (id) => {
+		console.log('Delete Todo');
 	};
 
 	updateActivityColor = (status) => {
@@ -47,44 +51,18 @@ export default class TodoMiniList extends Component {
 						if (loading) return <p>Loading...</p>;
 						if (error) return <p>Error : (</p>;
 						return (
-							// <div className="row">
-							// 	{
-							// 		todoList.map(({ id, label, description, todoActivity }) => (
-							// 			<div className="todoBlock alert alert-warning">
-							// 				<a class="edit editNotes" data-dismiss="alert"
-							// 					onClick={() => this.editTodo(id)}
-							// 				><FaEdit />
-							// 				</a>
-							// 				<a href="#" class="" onClick={() => this.detailsTodo(id)}>{label}</a>
-							// 				<div>
-							// 					{
-							// 						todoActivity.map((act, i) => (
-							// 							<TodoItem label={act.label}
-							// 								status={act.status}
-							// 								color={this.updateActivityColor(act.status)}
-							// 							/>
-							// 						)
-							// 						)
-							// 					}
-							// 					<AddTodoItems id={id} />
-							// 				</div>
-							// 			</div>
-							// 		))
-							// 	}
-							// </div>
 							<div className="row">
 								{
-									todoList.map(({ id, label, description, todoActivity }) => (
+									todoList.map(({ id, label, todoActivity }) => (
 										<div class="container">
-											<div className="header">
-												{label}
-												<i className="action fa fa-trash" />
-											</div>
+											<TodoHeader label={label} todoId={id} />
 											<div className="content">
 												
 												{
 													todoActivity.map((act, i) => (
 														<TodoItem label={act.label}
+															todoId={id}
+															itemId={act.id}
 															status={act.status}
 															color={this.updateActivityColor(act.status)}
 														/>
@@ -92,7 +70,7 @@ export default class TodoMiniList extends Component {
 													)
 												}
 											</div>
-											<AddTodoItems id={id} />											
+											<AddTodoItems id={id} />
 										</div>
 									))
 								}
