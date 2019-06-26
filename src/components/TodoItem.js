@@ -21,7 +21,7 @@ class TodoItem extends Component {
 							onClick={() => this.props.updateItem(todoId, itemId, { status: 'Done' })}
 						/>
 						<i className="fa fa-pen"
-							// onClick={() => this.props.setUpdateTodoItem({ id: itemId, label, status })}
+							onClick={() => this.props.setUpdateTodoItem({ id: itemId, label, status })}
 						/>
 						<i className="fa fa-trash"
 							onClick={() => this.props.deleteItem(todoId, itemId)}

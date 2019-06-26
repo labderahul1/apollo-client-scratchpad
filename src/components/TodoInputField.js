@@ -24,7 +24,7 @@ export default class TodoInputField extends Component {
 	cleartext = (e) => {
 		this.setState({ todoInput: { ...this.state.todoInput, id: '', label: '' } });
 	}
-
+	
 	render({},  { todoInput }) {
 		return (
 			<Mutation
@@ -37,7 +37,22 @@ export default class TodoInputField extends Component {
 							<input type="text" value={todoInput.label} onInput={this.setTodotext} 
 								onKeyPress={e => {
 									if (e.key === 'Enter') {
-										createTodo({ variables: { todoInput } });
+										createTodo({ variables: { todoInput },
+											optimisticResponse: {
+												__typename: 'Mutation',
+												createTodo: {
+													...todoInput,
+													__typename: 'Todo'
+												}
+											},
+											update: (cache, { data: { createTodo } }) => {
+												const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
+												cache.writeQuery({
+													query: GET_ALL_TODO,
+													data: { getAllTodoList: getAllTodoList.concat([createTodo]) }
+												});
+											}
+										});
 										this.cleartext();
 									}
 								}}

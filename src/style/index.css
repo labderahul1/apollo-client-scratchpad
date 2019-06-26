@@ -122,6 +122,9 @@ html, body {
   
   .done {
 	color: grey !important;
+  }
+
+  .done label {
 	text-decoration: line-through;
   }
 
@@ -129,31 +132,16 @@ html, body {
 	  cursor: default;
 	  pointer-events: none;
   }
-  
-  /* .footer input {
-	margin: 20px;
-	width: 68%;
-	height: 40px;
-	padding: 10px;
-	box-sizing: border-box;
-	font-size: 18px;
-	border: none;
-	box-shadow: 0 1px 1px 1px #ccc;
-  }
-   */
-  /* .footer button {
-	height: 40px;
-	width: 20%;
-	font-size: 18px;
-	background: #5b9bd8;
-	border: none;
-	cursor: pointer;
-  } */
 
   button:disabled {
 	  cursor: default;
   }
 
   .labelText {
-	  position: relative;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 75%;
+	display: inline-block;
   }

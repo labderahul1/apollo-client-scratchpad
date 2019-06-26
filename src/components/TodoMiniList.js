@@ -5,10 +5,7 @@ import { h, Component } from 'preact';
 import { Query } from 'react-apollo';
 import { route } from 'preact-router';
 import { GET_ALL_TODO } from '../constants/queries';
-import TodoItem from './TodoItem';
-import AddTodoItems from './AddTodoItems';
-import UpdateTodoItems from './UpdateTodoItems';
-import TodoHeader from './TodoHeader';
+import TodoBlock from './TodoBlock';
 
 export default class TodoMiniList extends Component {
 	state= {
@@ -50,24 +47,11 @@ export default class TodoMiniList extends Component {
 							<div className="row">
 								{
 									todoList.map(({ id, label, todoActivity }) => (
-										<div class="container">
-											<TodoHeader label={label} todoId={id} />
-											<div className="content">
-												
-												{
-													todoActivity.map((act, i) => (
-														<TodoItem label={act.label}
-															setUpdateTodoItem={this.setUpdateTodoItem}
-															todoId={id}
-															itemId={act.id}
-															status={act.status}
-														/>
-													)
-													)
-												}
-											</div>
-											<AddTodoItems id={id} />
-										</div>
+										<TodoBlock
+											id={id}
+											label={label}
+											 todoActivity={todoActivity}
+										/>
 									))
 								}
 							</div>
