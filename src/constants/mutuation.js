@@ -45,7 +45,16 @@ export const DELETE_ITEM = gql`
 mutation deleteItem($todoId: String, $itemId: String) {
   deleteItem(todoId: $todoId, itemId: $itemId) {
     id
-    label
+    # label
+  }
+}
+`;
+
+export const UPDATE_ITEM = gql`
+mutation updateItem($todoId: String, $itemId: String, $updateVal: activity) {
+  updateItem(todoId: $todoId, itemId: $itemId, updateVal: $updateVal) {
+    id
+    # label
   }
 }
 `;

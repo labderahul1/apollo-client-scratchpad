@@ -71,29 +71,6 @@ export default class AddTodoItems extends Component {
 						</div>
 					);
 				}}
-				{/* {
-					(addTodoActivity, { data }) => (
-						<div className="footer">
-							<input type="text" placeholder="Add item..."
-								onInput={this.setActivity}
-								value={todoActivity.label}
-								onKeyPress={e => {
-									if (e.key === 'Enter') {
-										addTodoActivity({ variables: { id, todoActivity } });
-										this.clearActivity();
-									}
-								}}
-							/>
-							<button
-								onClick={e => {
-									addTodoActivity({ variables: { id, todoActivity } });
-									this.clearActivity();
-								}}
-								disabled={!todoActivity.label.length}
-							>Add</button>
-						</div>
-					)
-				} */}
 			</Mutation>
 		);
 	}

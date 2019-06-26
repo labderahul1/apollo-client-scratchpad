@@ -7,17 +7,22 @@ import { route } from 'preact-router';
 import { GET_ALL_TODO } from '../constants/queries';
 import TodoItem from './TodoItem';
 import AddTodoItems from './AddTodoItems';
+import UpdateTodoItems from './UpdateTodoItems';
 import TodoHeader from './TodoHeader';
 
 export default class TodoMiniList extends Component {
 	state= {
-		todoInput: {
-			id: '100100ss',
-			label: 'todoNamwe',
-			todoStatus: 'Done',
-			description: 'shssahj'
+		todoItem: {
+			id: '',
+			label: '',
+			status: 'Todo'
 		  }
 	}
+
+	// setUpdateTodoItem = (_updateObj) => {
+	// 	this.setState({ todoItem: { ...this.state.todoItem, ..._updateObj } });
+	// 	// console.log('setUpdateTodoItem', this.state);
+	// }
 
 	detailsTodo = (id) => {
 		route(`/profile/${id}`, id);
@@ -31,16 +36,7 @@ export default class TodoMiniList extends Component {
 		console.log('Delete Todo');
 	};
 
-	updateActivityColor = (status) => {
-		switch (status) {
-			case 'Todo': return 'red';
-			case 'Done': return 'green';
-			case 'WIP': return 'yellow';
-			default: return 'black';
-		}
-	}
-
-	render() {
+	render({}, { todoItem }) {
 		return (
 			<Query
 				query={GET_ALL_TODO}
@@ -61,10 +57,10 @@ export default class TodoMiniList extends Component {
 												{
 													todoActivity.map((act, i) => (
 														<TodoItem label={act.label}
+															setUpdateTodoItem={this.setUpdateTodoItem}
 															todoId={id}
 															itemId={act.id}
 															status={act.status}
-															color={this.updateActivityColor(act.status)}
 														/>
 													)
 													)
