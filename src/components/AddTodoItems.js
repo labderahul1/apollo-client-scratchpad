@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 import { Component } from 'preact';
 import uuid from 'uuid';
-import AddTodoItemMutation from '../components/HOC/AddTodoItemMutation';
+import AddItemMutation from '../components/HOC/AddItemMutation';
 
 class AddTodoItems extends Component {
 	state= {
@@ -47,4 +47,4 @@ class AddTodoItems extends Component {
 	}
 }
 
-export default AddTodoItemMutation(AddTodoItems);
+export default AddItemMutation(AddTodoItems);

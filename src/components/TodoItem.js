@@ -4,13 +4,8 @@ import { Component } from 'preact';
 import DeleteItemMutation from './HOC/DeleteItemMutation';
 import UpdateItemMutation from './HOC/UpdateItemMutation';
 
-
+// eslint-disable-next-line react/prefer-stateless-function
 class TodoItem extends Component {
-	state= {
-		id: '100100ss'
-	}
-	
-
 	render({ label, status, todoId, itemId }, {}) {
 		return (
 			<div className={`item ${status === 'Done' ? 'done disabled' : ''}`}>
@@ -24,7 +19,7 @@ class TodoItem extends Component {
 							onClick={() => this.props.setUpdateTodoItem({ id: itemId, label, status })}
 						/>
 						<i className="fa fa-trash"
-							onClick={() => this.props.deleteItem(todoId, itemId)}
+							onClick={() => window.confirm('Are You Sure?') ? this.props.deleteItem(todoId, itemId) : ''}
 						/>
 					</div>
 				</div>
@@ -32,5 +27,4 @@ class TodoItem extends Component {
 		);
 	}
 }
-
 export default UpdateItemMutation(DeleteItemMutation(TodoItem));

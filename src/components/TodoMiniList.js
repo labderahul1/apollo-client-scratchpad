@@ -16,11 +16,6 @@ export default class TodoMiniList extends Component {
 		  }
 	}
 
-	// setUpdateTodoItem = (_updateObj) => {
-	// 	this.setState({ todoItem: { ...this.state.todoItem, ..._updateObj } });
-	// 	// console.log('setUpdateTodoItem', this.state);
-	// }
-
 	detailsTodo = (id) => {
 		route(`/profile/${id}`, id);
 	};

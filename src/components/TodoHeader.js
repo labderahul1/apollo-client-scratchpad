@@ -1,15 +1,12 @@
+/* eslint-disable react/prefer-stateless-function */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { Mutation } from 'react-apollo';
 import { DELETE_TODO } from '.././constants/mutuation';
 import { GET_ALL_TODO } from '.././constants/queries';
 
 export default class TodoHeader extends Component {
-	state= {
-		id: '100100ss'
-	}
-
 	render({ label, todoId }, {}) {
 		return (
 			<Mutation
@@ -22,7 +19,7 @@ export default class TodoHeader extends Component {
 							{label}
 							<i className="action fa fa-trash"
 								onClick={e => {
-									deleteTodo({ variables: { todoId },
+									deleteTodo({ variables: { id: todoId },
 										optimisticResponse: {
 											__typename: 'Mutation',
 											deleteTodo: {
@@ -31,7 +28,6 @@ export default class TodoHeader extends Component {
 											}
 										},
 										update: (cache, { data: { deleteTodo } }) => {
-											console.log(cache.readQuery({ query: GET_ALL_TODO }));
 											const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
 											const todoIndex = getAllTodoList.findIndex((ele) => ele.id === deleteTodo.id);
 											getAllTodoList.splice(todoIndex, 1);
