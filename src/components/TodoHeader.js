@@ -16,7 +16,7 @@ export default class TodoHeader extends Component {
 					console.log();
 					return (
 						<div className="header">
-							{label}
+							<label>{label}</label>
 							<i className="action fa fa-trash"
 								onClick={e => {
 									deleteTodo({ variables: { id: todoId },

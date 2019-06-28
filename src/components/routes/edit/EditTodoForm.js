@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { route } from 'preact-router';
-import RadioGroup from '../../../components/RadioGroup';
+// import RadioGroup from '../../../components/RadioGroup';
 import style from './style';
 import { Mutation } from 'react-apollo';
 import { UPDATE_TODO } from '../../../constants/mutuation';
@@ -52,10 +52,10 @@ export default class EditTodoForm extends Component {
 									{
 										todoActivity.map((act, i) => (
 											<div>
-												<RadioGroup value={act.label} id={act.id} status={act.status}
+												{/* <RadioGroup value={act.label} id={act.id} status={act.status}
 													updateActivityLabel={this.updateActivityLabel}
 												/>
-												<br />
+												<br /> */}
 											</div>
 										)
 										)

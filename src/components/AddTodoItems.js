@@ -29,7 +29,7 @@ class AddTodoItems extends Component {
 					onInput={this.setActivity}
 					value={todoActivity.label}
 					onKeyPress={e => {
-						if (e.key === 'Enter') {
+						if (e.key === 'Enter' && todoActivity.label) {
 							this.props.addTodoItem(id, todoActivity);
 							this.clearActivity();
 						}

@@ -1,7 +1,7 @@
 
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import { Query } from 'react-apollo';
 import { route } from 'preact-router';
 import { GET_ALL_TODO } from '../constants/queries';

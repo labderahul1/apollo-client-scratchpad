@@ -28,7 +28,7 @@ class TodoBlock extends Component {
 		return (
 			<div class="container">
 				<TodoHeader label={label} todoId={id} />
-				<div className="content">							
+				<div className="content">
 					{
 						todoActivity.map((act, i) => (
 							<TodoItem label={act.label}

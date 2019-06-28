@@ -1,4 +1,3 @@
-/* @import '~bootstrap/dist/css/bootstrap.css'; */
 @import '~https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css';
 
 html, body {
@@ -13,23 +12,6 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-
-.todoInDetails {
-	position: absolute;
-	width: 90%;
-    /* left: 50%;
-    top: 50%; */
-    /* margin-left: -25%;
-    margin-top: -25%; */
-}
-
-.editInput {
-	width: 50%;
-	position: relative;
-	float: left;
-	margin-right: 10px;
-}
-
 /* ---------------Updated CSSS-------------- */
 
 
@@ -37,6 +19,11 @@ html, body {
 	font-family: helvetica;
 	box-sizing: border-box;
 	/* color: #000000; */
+  }
+
+  .row {
+	  display: flex;
+	  flex-wrap: wrap;
   }
 
   input {
@@ -61,8 +48,6 @@ html, body {
   }
   
   .container {
-	position: relative;
-	float: left;
 	margin: 20px;
 	max-height: 450px;
 	width: 420px;
@@ -86,18 +71,21 @@ html, body {
 	font-weight: bold;
 	padding: 20px;
 	box-sizing: border-box;
+	display: flex;
   }
   
   .footer {
 	height: 80px;
 	border-top: 0.5px solid #aeaeaf;
   }
+
+  .header label {
+	  flex: 3;
+  }
   
   .header .action {
-	/* display: inline-block; */
 	height: 20px;
 	width: 20px;
-	float: right;
   }
 
   .header i {
@@ -109,10 +97,7 @@ html, body {
 	color: #000000;
 	margin-bottom: 30px;
 	cursor: default;
-  }
-  
-  .item .actions {
-	float: right;
+	display: flex;
   }
   
   .item .actions i {
@@ -138,10 +123,8 @@ html, body {
   }
 
   .labelText {
-	position: relative;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	width: 75%;
-	display: inline-block;
+	flex: 2;
   }

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
-import { h, Component } from 'preact';
+import { Component } from 'preact';
 import uuid from 'uuid';
 import CreateTodoMutation from './HOC/CreateTodoMutation';
 class TodoInputField extends Component {
@@ -23,7 +23,7 @@ class TodoInputField extends Component {
 			<div>
 				<input type="text" value={todoInput.label} onInput={this.setTodotext} 
 					onKeyPress={e => {
-						if (e.key === 'Enter') {
+						if (e.key === 'Enter' && todoInput.label) {
 							this.props.createTodo(todoInput);
 							this.cleartext();
 						}
