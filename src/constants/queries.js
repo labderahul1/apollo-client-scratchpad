@@ -3,15 +3,13 @@ import gql from 'graphql-tag';
 export const GET_ALL_TODO = gql`
 query allTodo {
 	getAllTodoList {
-    id
-    label
-    todoStatus
-    todoActivity {
-      id
-      label
+    todoId
+    todoLabel
+    itemsList {
+      itemId
+      itemLabel
       status
     }
-	description
   }
 }
 `;

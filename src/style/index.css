@@ -13,12 +13,9 @@ html, body {
 	-moz-osx-font-smoothing: grayscale;
 }
 /* ---------------Updated CSSS-------------- */
-
-
 * {
 	font-family: helvetica;
 	box-sizing: border-box;
-	/* color: #000000; */
   }
 
   .row {

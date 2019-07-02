@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable no-console */
 import { Component } from 'preact';
-import UpdateItemMutation from './HOC/UpdateItemMutation';
+import withUpdateItem from './HOC/withUpdateItem';
 
 class UpdateTodoItems extends Component {
 	state= {
@@ -44,4 +44,4 @@ class UpdateTodoItems extends Component {
 	}
 }
 
-export default UpdateItemMutation(UpdateTodoItems);
+export default withUpdateItem(UpdateTodoItems);

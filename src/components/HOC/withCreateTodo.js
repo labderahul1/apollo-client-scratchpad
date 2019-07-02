@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import { CREATE_TODO } from '../../constants/mutuation';
 import { GET_ALL_TODO } from '../../constants/queries';
 
-const CreateTodoMutation = graphql(CREATE_TODO, {
+const withCreateTodo = graphql(CREATE_TODO, {
 	props: ({ mutate }) => ({
 		createTodo: (todoInput) => (
 			mutate(
@@ -27,4 +27,4 @@ const CreateTodoMutation = graphql(CREATE_TODO, {
 		)
 		  })
 });
-export default CreateTodoMutation;
+export default withCreateTodo;

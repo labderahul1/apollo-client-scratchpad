@@ -2,26 +2,27 @@ import { graphql } from 'react-apollo';
 import { ADD_TODO_ACTIVITY } from '../../constants/mutuation';
 import { GET_ALL_TODO } from '../../constants/queries';
 
-const AddItemMutation = graphql(ADD_TODO_ACTIVITY, {
+const withAddItem = graphql(ADD_TODO_ACTIVITY, {
 	props: ({ mutate }) => {
 		return ({
-			addTodoItem: (id, todoActivity) => {
+			addTodoItem: (todoId, todoItem) => {
 				return (
 					mutate(
 						{
-							variables: { id, todoActivity },
+							variables: { todoId, todoItem },
 							optimisticResponse: {
 								__typename: 'Mutation',
 								addTodoActivity: {
-									id,
-									...todoActivity,
+									todoId,
+									todoItem,
 									__typename: 'Todo'
 								}
 							},
-							update: (cache, { data: { addTodoActivity } }) => {
+							update: (cache, { data: { addTodoActivity: { todoId, todoItem } } }) => {
+								// console.log(todoId, todoItem, 'addTodoActivity');
 								const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-								const todo = getAllTodoList.find((ele) => ele.id === id);
-								todo.todoActivity.push(addTodoActivity);
+								const todo = getAllTodoList.find((ele) => ele.todoId === todoId);
+								todo.itemsList.push(todoItem);
 								cache.writeQuery({
 									query: GET_ALL_TODO,
 									data: { getAllTodoList }
@@ -35,4 +36,4 @@ const AddItemMutation = graphql(ADD_TODO_ACTIVITY, {
 	}
 });
 
-export default AddItemMutation;
+export default withAddItem;

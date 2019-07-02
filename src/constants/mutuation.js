@@ -3,22 +3,20 @@ import gql from 'graphql-tag';
 export const CREATE_TODO = gql`
 mutation createTodo($todoInput: addTodo) {
   createTodo(todoInput: $todoInput) {
-    id
-    label
-    todoStatus
-    todoActivity {
-      id
+    todoId
+    todoLabel
+    itemsList {
+      itemId
     }
-    description
   }
 }
 `;
 
 export const ADD_TODO_ACTIVITY = gql`
-mutation addTodoActivity ($id: String, $todoActivity:activity) {
-  addTodoActivity(id: $id, todoActivity: $todoActivity) {
-    id
-    label
+mutation addTodoActivity ($todoId: String, $todoItem:addItems) {
+  addTodoActivity(todoId: $todoId, todoItem: $todoItem) {
+    itemId
+    itemLabel
     status
   }
 }
@@ -33,10 +31,9 @@ mutation updateTodo($id: String, $updateInput: addTodo) {
 `;
 
 export const DELETE_TODO = gql`
-mutation deleteTodo($id: String) {
-  deleteTodo(todoId: $id) {
-    id
-    # label
+mutation deleteTodo($todoId: String) {
+  deleteTodo(todoId: $todoId) {
+    todoId
   }
 }
 `;

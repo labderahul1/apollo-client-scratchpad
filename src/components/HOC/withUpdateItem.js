@@ -1,27 +1,29 @@
 import { graphql } from 'react-apollo';
-import { DELETE_ITEM } from '../../constants/mutuation';
+import { UPDATE_ITEM } from '../../constants/mutuation';
 import { GET_ALL_TODO } from '../../constants/queries';
 
-const DeleteItemMutation = graphql(DELETE_ITEM, {
+const withUpdateItem = graphql(UPDATE_ITEM, {
 	props: ({ mutate }) => {
 		return ({
-			deleteItem: (todoId, itemId) => {
+			updateItem: (todoId, itemId, updateVal) => {
 				return (
 					mutate(
 						{
-							variables: { todoId, itemId },
+							variables: { todoId, itemId, updateVal },
 							optimisticResponse: {
 								__typename: 'Mutation',
-								deleteItem: {
+								updateItem: {
 									id: itemId,
 									__typename: 'Todo'
 								}
 							},
-							update: (cache, { data: { deleteItem } }) => {
+							update: (cache, { data: { updateItem } }) => {
 								const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
 								const todo = getAllTodoList.find((ele) => ele.id === todoId);
-								let itemIndex = todo.todoActivity.findIndex((element) => element.id === deleteItem.id );
-								todo.todoActivity.splice(itemIndex, 1);
+								let itemIndex = todo.todoActivity.findIndex((element) => element.id === updateItem.id );
+								let itemToUpdate = todo.todoActivity[itemIndex];
+								itemToUpdate = { ...itemToUpdate, ...updateVal };
+								todo.todoActivity.splice(itemIndex, 1, itemToUpdate);
 								cache.writeQuery({
 									query: GET_ALL_TODO,
 									data: { getAllTodoList }
@@ -35,4 +37,4 @@ const DeleteItemMutation = graphql(DELETE_ITEM, {
 	}
 });
 
-export default DeleteItemMutation;
+export default withUpdateItem;

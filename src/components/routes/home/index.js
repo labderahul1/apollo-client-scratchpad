@@ -1,13 +1,12 @@
-import { h } from 'preact';
 import style from './style';
-import TodoInputField from '../../../components/TodoInputField';
-import TodoMiniList from '../../../components/TodoMiniList';
+import InsertTodo from '../../InsertTodo';
+import TodoList from '../../../components/TodoList';
 
 const Home = () => (
 	<div class={style.home}>
-		<TodoInputField />
+		<InsertTodo />
 		<div>
-			<TodoMiniList label="Todays Todo" />
+			<TodoList label="Todays Todo" />
 		</div>
 	</div>
 );
