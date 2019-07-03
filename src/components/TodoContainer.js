@@ -41,6 +41,7 @@ class TodoContainer extends Component {
 								todoId={todoId}
 								itemId={itemId}
 								status={status}
+								clearInputBox={this.clearInputBox}
 							/>
 						)
 						)
