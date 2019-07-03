@@ -12,9 +12,9 @@ mutation createTodo($todoInput: addTodo) {
 }
 `;
 
-export const ADD_TODO_ACTIVITY = gql`
-mutation addTodoActivity ($todoId: String, $todoItem:addItems) {
-  addTodoActivity(todoId: $todoId, todoItem: $todoItem) {
+export const ADD_TODO_ITEM = gql`
+mutation insertItem ($todoId: String, $todoItem:addItems) {
+  insertItem(todoId: $todoId, todoItem: $todoItem) {
     itemId
     itemLabel
     status
@@ -41,17 +41,15 @@ mutation deleteTodo($todoId: String) {
 export const DELETE_ITEM = gql`
 mutation deleteItem($todoId: String, $itemId: String) {
   deleteItem(todoId: $todoId, itemId: $itemId) {
-    id
-    # label
+    itemId
   }
 }
 `;
 
 export const UPDATE_ITEM = gql`
-mutation updateItem($todoId: String, $itemId: String, $updateVal: activity) {
+mutation updateItem($todoId: String, $itemId: String, $updateVal: addItems) {
   updateItem(todoId: $todoId, itemId: $itemId, updateVal: $updateVal) {
-    id
-    # label
+    itemId
   }
 }
 `;

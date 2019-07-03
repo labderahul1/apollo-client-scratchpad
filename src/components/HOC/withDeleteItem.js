@@ -13,15 +13,15 @@ const withDeleteItem = graphql(DELETE_ITEM, {
 							optimisticResponse: {
 								__typename: 'Mutation',
 								deleteItem: {
-									id: itemId,
-									__typename: 'Todo'
+									itemId,
+									__typename: 'Items'
 								}
 							},
 							update: (cache, { data: { deleteItem } }) => {
 								const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-								const todo = getAllTodoList.find((ele) => ele.id === todoId);
-								let itemIndex = todo.todoActivity.findIndex((element) => element.id === deleteItem.id );
-								todo.todoActivity.splice(itemIndex, 1);
+								const todo = getAllTodoList.find((ele) => ele.todoId === todoId);
+								let itemIndex = todo.itemsList.findIndex((element) => element.itemId === deleteItem.itemId );
+								todo.itemsList.splice(itemIndex, 1);
 								cache.writeQuery({
 									query: GET_ALL_TODO,
 									data: { getAllTodoList }

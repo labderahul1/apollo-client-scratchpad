@@ -1,6 +1,7 @@
 import { Query } from 'react-apollo';
 import { GET_ALL_TODO } from '../constants/queries';
 import TodoContainer from './TodoContainer';
+import ErrorHandler from './ErrorHandler';
 
 const TodoList = () => (
 	<Query
@@ -8,10 +9,8 @@ const TodoList = () => (
 		fetchPolicy="cache-and-network"
 	>
 		{
-			({ loading, error, data: { getAllTodoList: todoList } }) => {
-				if (loading) return <p>Loading...</p>;
-				if (error) return <p>Error : (</p>;
-				return (
+			({ loading, error, data: { getAllTodoList: todoList } }) => (
+				loading || error ? <ErrorHandler loading={loading} error={error} /> :
 					<div className="row">
 						{
 							todoList.map(({ todoId, todoLabel, itemsList }, i) => (
@@ -23,8 +22,7 @@ const TodoList = () => (
 							))
 						}
 					</div>
-				);
-			}
+			)
 		}
 
 	</Query>

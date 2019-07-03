@@ -12,6 +12,16 @@ html, body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+.home {
+	padding: 60px 20px;
+	min-height: 100%;
+	width: 100%;
+}
+
+ul {
+	margin: 0;
+  }
 /* ---------------Updated CSSS-------------- */
 * {
 	font-family: helvetica;
@@ -125,3 +135,4 @@ html, body {
 	text-overflow: ellipsis;
 	flex: 2;
   }
+  

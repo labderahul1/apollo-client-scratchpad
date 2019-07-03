@@ -17,9 +17,10 @@ const withCreateTodo = graphql(CREATE_TODO, {
 					},
 					update: (cache, { data: { createTodo } }) => {
 						const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
+						getAllTodoList.push({ ...createTodo });
 						cache.writeQuery({
 							query: GET_ALL_TODO,
-							data: { getAllTodoList: getAllTodoList.concat([createTodo]) }
+							data: { getAllTodoList }
 						});
 					}
 				}

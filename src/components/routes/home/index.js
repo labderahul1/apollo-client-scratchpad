@@ -1,9 +1,9 @@
-import style from './style';
+// import style from './style';
 import InsertTodo from '../../InsertTodo';
 import TodoList from '../../../components/TodoList';
 
 const Home = () => (
-	<div class={style.home}>
+	<div class="home">
 		<InsertTodo />
 		<div>
 			<TodoList label="Todays Todo" />

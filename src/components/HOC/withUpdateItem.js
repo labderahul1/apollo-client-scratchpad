@@ -13,17 +13,17 @@ const withUpdateItem = graphql(UPDATE_ITEM, {
 							optimisticResponse: {
 								__typename: 'Mutation',
 								updateItem: {
-									id: itemId,
-									__typename: 'Todo'
+									itemId,
+									__typename: 'Items'
 								}
 							},
 							update: (cache, { data: { updateItem } }) => {
 								const { getAllTodoList } = cache.readQuery({ query: GET_ALL_TODO });
-								const todo = getAllTodoList.find((ele) => ele.id === todoId);
-								let itemIndex = todo.todoActivity.findIndex((element) => element.id === updateItem.id );
-								let itemToUpdate = todo.todoActivity[itemIndex];
+								const todo = getAllTodoList.find((ele) => ele.todoId === todoId);
+								let itemIndex = todo.itemsList.findIndex((element) => element.itemId === updateItem.itemId );
+								let itemToUpdate = todo.itemsList[itemIndex];
 								itemToUpdate = { ...itemToUpdate, ...updateVal };
-								todo.todoActivity.splice(itemIndex, 1, itemToUpdate);
+								todo.itemsList.splice(itemIndex, 1, itemToUpdate);
 								cache.writeQuery({
 									query: GET_ALL_TODO,
 									data: { getAllTodoList }

@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-bind */
 import { Component } from 'preact';
+import uuid from 'uuid';
 import TodoHeader from './TodoHeader';
 import ItemContainer from './ItemContainer';
 import InsertItem from './InsertItem';
@@ -10,18 +11,25 @@ class TodoContainer extends Component {
 			itemId: '',
 			itemLabel: '',
 			status: 'Todo'
-		  }
+		  },
+		  isUpdateItem: false
 	}
 
-	setUpdateTodoItem = (_updateObj) => {
-		this.setState({ todoItem: { ...this.state.todoItem, ..._updateObj } });
+	inputUpdateItemLabel = (_updateObj) => {
+		this.setState({ todoItem: { ...this.state.todoItem, ..._updateObj }, isUpdateItem: true });
 	}
 
-	clearUpdateData = () => {
-		this.setState({ todoItem: { ...this.state.todoItem, itemLabel: '', itemId: '' } });
+	intializeInputItemLabel = (e) => {
+		if (!this.state.todoItem.itemId)
+			this.setState({ todoItem: { ...this.state.todoItem, itemId: uuid() } });
+		this.setState({ todoItem: { ...this.state.todoItem, itemLabel: e.target.value } });
 	}
 
-	render({ todoId, todoLabel, itemsList }, { todoItem: { itemId, itemLabel, status }, todoItem }) {
+	clearInputBox = () => {
+		this.setState({ todoItem: { ...this.state.todoItem, itemLabel: '', itemId: '' }, isUpdateItem: false });
+	}
+
+	render({ todoId, todoLabel, itemsList }, { todoItem, isUpdateItem }) {
 		return (
 			<div class="container">
 				<TodoHeader todoLabel={todoLabel} todoId={todoId} />
@@ -29,8 +37,8 @@ class TodoContainer extends Component {
 					{
 						itemsList.map(({ itemId, itemLabel, status }) => (
 							<ItemContainer itemLabel={itemLabel}
-								setUpdateTodoItem={this.setUpdateTodoItem}
-								todoId
+								inputUpdateItemLabel={this.inputUpdateItemLabel}
+								todoId={todoId}
 								itemId={itemId}
 								status={status}
 							/>
@@ -38,10 +46,15 @@ class TodoContainer extends Component {
 						)
 					}
 				</div>
-				<InsertItem todoId={todoId} />
+				<InsertItem
+					todoId={todoId}
+					todoItem={todoItem}
+					intializeInputItemLabel={this.intializeInputItemLabel}
+					isUpdateItem={isUpdateItem}
+					clearInputBox={this.clearInputBox}
+				/>
 			</div>
 		);
 	}
 }
-
 export default TodoContainer;
