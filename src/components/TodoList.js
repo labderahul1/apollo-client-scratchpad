@@ -1,7 +1,7 @@
 import { Query } from 'react-apollo';
 import { GET_ALL_TODO } from '../constants/queries';
 import TodoContainer from './TodoContainer';
-import ErrorHandler from './ErrorHandler';
+import Error from './Error';
 
 const TodoList = () => (
 	<Query
@@ -10,7 +10,7 @@ const TodoList = () => (
 	>
 		{
 			({ loading, error, data: { getAllTodoList: todoList } }) => (
-				loading || error ? <ErrorHandler loading={loading} error={error} /> :
+				loading || error ? <Error loading={loading} error={error} /> :
 					<div className="row">
 						{
 							todoList.map(({ todoId, todoLabel, itemsList }, i) => (

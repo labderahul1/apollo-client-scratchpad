@@ -1,27 +1,14 @@
-/* eslint-disable react/jsx-no-bind */
-import withAddItem from './HOC/withAddItem';
-import withUpdateItem from './HOC/withUpdateItem';
-
-const InsertItem = ({ todoId, todoItem, isUpdateItem, addTodoItem, intializeInputItemLabel, clearInputBox, updateItem }, {}) => (
+const InsertItem = ({ inputText='', updateInputField, addUpdateBtnAction, disabled, btnLabel='Add' }, {}) => (
 	<div className="footer">
 		<input type="text" placeholder="Add item..."
-			onInput={(e) => intializeInputItemLabel(e)}
-			value={todoItem.itemLabel}
-			onKeyPress={e => {
-				if (e.key === 'Enter' && todoItem.itemLabel) {
-					!isUpdateItem ? addTodoItem(todoId, todoItem) :	updateItem(todoId, todoItem.itemId, { itemLabel: todoItem.itemLabel });
-					clearInputBox();
-				}
-			}}
+			onInput={updateInputField}
+			value={inputText}
+			onKeyPress={addUpdateBtnAction}
 		/>
 		<button
-			onClick={e => {
-				!isUpdateItem ? addTodoItem(todoId, todoItem) :	updateItem(todoId, todoItem.itemId, { itemLabel: todoItem.itemLabel });
-				clearInputBox();
-			}
-			}
-			disabled={!todoItem.itemLabel.trim().length}
-		>{isUpdateItem ? 'Update' : 'Add'}</button>
+			onClick={addUpdateBtnAction}
+			disabled={disabled}
+		>{btnLabel}</button>
 	</div>
 );
-export default withUpdateItem(withAddItem(InsertItem));
+export default InsertItem;
