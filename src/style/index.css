@@ -1,0 +1,138 @@
+@import '~https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css';
+
+html, body {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background: #FAFAFA;
+	font-family: 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+	color: #444;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.home {
+	padding: 60px 20px;
+	min-height: 100%;
+	width: 100%;
+}
+
+ul {
+	margin: 0;
+  }
+/* ---------------Updated CSSS-------------- */
+* {
+	font-family: helvetica;
+	box-sizing: border-box;
+  }
+
+  .row {
+	  display: flex;
+	  flex-wrap: wrap;
+  }
+
+  input {
+	margin: 20px;
+	width: 68%;
+	height: 40px;
+	padding: 10px;
+	box-sizing: border-box;
+	font-size: 18px;
+	border: none;
+	box-shadow: 0 1px 1px 1px #ccc;
+  }
+
+  button {
+	height: 40px;
+	width: 20%;
+	font-size: 18px;
+	background: #efb323;
+	font-weight: bold;
+	border: none;
+	cursor: pointer;
+  }
+  
+  .container {
+	margin: 20px;
+	max-height: 450px;
+	width: 420px;
+	box-shadow: 0 1px 1px 1px #ccc;
+	background: #fcf1d6;
+  }
+  
+  .content {
+	padding: 20px;
+	min-height: 300px;
+	max-height: 300px;
+	overflow-y: auto;
+  }
+  
+  .header {
+	width: 100%;
+	height: 60px;
+	background: #efb323;
+	border-bottom: 1px solid #bbb;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 20px;
+	box-sizing: border-box;
+	display: flex;
+  }
+  
+  .footer {
+	height: 80px;
+	border-top: 0.5px solid #aeaeaf;
+  }
+
+  .header label {
+	  flex: 3;
+  }
+  
+  .header .action {
+	height: 20px;
+	width: 20px;
+  }
+
+  .header i {
+	  cursor: pointer;
+  }
+  
+  .item {  
+	font-size: 18px;
+	color: #000000;
+	margin-bottom: 30px;
+	cursor: default;
+	display: flex;
+  }
+  
+  .item .actions i {
+	margin-left: 15px;
+	cursor: pointer;
+  }
+  
+  .done {
+	color: grey !important;
+  }
+
+  .done label {
+	text-decoration: line-through;
+  }
+
+  .disabled {
+	  cursor: default;
+	  pointer-events: none;
+  }
+
+  button:disabled {
+	  cursor: default;
+  }
+
+  .labelText {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	flex: 2;
+  }
+  
